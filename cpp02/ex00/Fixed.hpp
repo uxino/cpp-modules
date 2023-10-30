@@ -6,7 +6,7 @@
 class Fixed
 {
 	private:
-		int integer;
+		int fixedPoint;
 		static int const tank = 8;
 	public:
 		Fixed();
