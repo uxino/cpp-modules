@@ -1,33 +1,23 @@
 #include <iostream>
+#include "Harl.hpp"
 
-#define MAX_SIZE 100
-
-struct Function
+int main()
 {
-    void (*func)()[4];
-};
+	Harl harl;
+	std::string input;
 
-void myFunction1()
-{
-    std::cout << "myFunction1 is called!" << std::endl;
-}
-
-void myFunction2() {
-    std::cout << "myFunction2 is called!" << std::endl;
-}
-
-int main() {
-    Function functionList[MAX_SIZE]; // Fonksiyon adreslerini saklamak için bir dizi oluşturuldu
-    int index = 0;
-
-    // Fonksiyon adreslerini diziye ekle
-    functionList[index++].func = myFunction1;
-    functionList[index++].func = myFunction2;
-
-    // Dizideki fonksiyonları çağır
-    for (int i = 0; i < index; i++) {
-        functionList[i].func(); // Fonksiyonu çağır
-    }
-
-    return 0;
+	while (1)
+	{
+		std::cout << "Please enter a level: ";
+		std::cin >> input;
+		if (input == "exit")
+			break;
+        if (!std::cin.good())
+		{
+            std::cout << std::endl;
+            break;
+		}
+		harl.complain(input);
+	}
+	return (0);
 }

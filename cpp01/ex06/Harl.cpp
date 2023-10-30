@@ -37,6 +37,11 @@ void Harl::complain(std::string level)
 			break;
 		i++;
 	}
-	if (i < 4)
+	while (i < 4)
+	{
+		std::cout << "[ " << type[i] << " ]" << std::endl;
 		(this->*fp[i])();
+		std::cout << "" << std::endl;
+		i++;
+	}
 }

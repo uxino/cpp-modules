@@ -6,10 +6,10 @@ FLAGS = -Wall -Wextra -Werror -std=c++98
 all: $(NAME)
 
 $(NAME): $(SRCS)
-	$(CC) $(FLAGS) $(SRCS) -o $(NAME)
+	@$(CC) $(FLAGS) $(SRCS) -o $(NAME)
 
 clean:
-	rm -f $(NAME)
+	@rm -rf $(NAME)
 
 fclean: clean
 

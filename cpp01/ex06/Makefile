@@ -1,4 +1,4 @@
-NAME = harl
+NAME = harlFilter
 SRCS = main.cpp Harl.cpp
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98
@@ -9,7 +9,7 @@ $(NAME): $(SRCS)
 	$(CC) $(FLAGS) $(SRCS) -o $(NAME)
 
 clean:
-	@rm -rf $(NAME)
+	rm -f $(NAME)
 
 fclean: clean
 
