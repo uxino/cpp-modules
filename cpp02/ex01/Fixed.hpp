@@ -8,7 +8,7 @@ class Fixed
 {
 	private:
 		int fixedPoint;
-		static int const tank = 8;
+		static int const mantissa = 8;
 	public:
 		Fixed();
 		Fixed(int value);
