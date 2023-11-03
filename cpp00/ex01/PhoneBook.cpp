@@ -3,8 +3,32 @@
 PhoneBook::PhoneBook()
 {
 	this->id = 0;
+    this->max = 0;
 }
+int issdigit(string s)
+{
+    int i = -1;
+    while(s[++i])
+        if (!(s[i] >= '0' && s[i] <= '9'))
+            return (0);
+    return (1);
+}
+int stringToInt(const string& str) {
+    int result = 0;
+    int sign = 1;
+    size_t i = 0;
 
+    if (str[0] == '-') {
+        sign = -1;
+        i = 1;
+    }
+
+    for (; i < str.length(); ++i) {
+        result = result * 10 + (str[i] - '0');
+    }
+
+    return sign * result;
+}
 void PhoneBook::add(void)
 {
 	string f_n;
@@ -28,6 +52,8 @@ void PhoneBook::add(void)
 			continue;
 		cout << "Phone Number: ";
 		std::getline(std::cin, p_n);
+        if (!issdigit(p_n))
+            continue;
 		if (p_n.empty())
 			continue;
 		cout <<"Darkest Secret: ";
@@ -37,16 +63,18 @@ void PhoneBook::add(void)
 		this->contacts[this->id++].set_contact(f_n,l_n,n_n, p_n, d_s);
 		if (this->id == 8)
 			this->id = 0;
+        this->max++;
 		break;
 	}
 }
 
 void PhoneBook::search(void)
 {
-	int	index;
+	int 	index;
+    string  input;
     cout << endl << "     index|      name|  lastname|  nickname|";
     cout << endl << "--------------------------------------------" << endl;
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < this->max; i++)
 	{
 		cout << std::setw(10) << i << "|";
 		if (this->contacts[i].get_name().length() > 9)
@@ -65,11 +93,15 @@ void PhoneBook::search(void)
 	while (1)
 	{
 		cout << "Please write index that you want to show." << endl;
-		
-		if (std::cin >> index)
+
+
+        if (std::cin >> input)
 		{
-			std::cin.ignore(1,'\n');
-			if (index >=0 && index <=7)
+            if (!issdigit(input))
+                continue;
+            std::cin.ignore(1,'\n');
+            index = stringToInt(input);
+            if (index >=0 && index <=7)
 			{
 				cout << "index|name|surname|nickname|phone_number|darkest_secret|" << endl;
 				cout << "    " << index << "|   " << this->contacts[index].get_name() << "|      "\
@@ -87,10 +119,5 @@ void PhoneBook::search(void)
 
         }
 	}
-}
-
-void PhoneBook::exit_(void)
-{
-	exit(1);
 }
 

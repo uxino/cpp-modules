@@ -17,7 +17,7 @@ int main(void)
 		else if (input == "SEARCH")
 			phone_book.search();
 		else if (input == "EXIT")
-			phone_book.exit_();
+			return (0);
 		else
 			cout << "Please choose a correct command!! :" << endl;
 	}

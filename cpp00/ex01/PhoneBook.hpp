@@ -6,12 +6,14 @@
 #include <string>
 #include <limits>
 #include "Contact.hpp"
+#include <cstdlib>
 
 class PhoneBook
 {
 	private:
 		Contact contacts[8];
 		int id;
+        int max;
 	public:
 		PhoneBook();
 		void add(void);
