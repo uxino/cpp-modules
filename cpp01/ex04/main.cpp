@@ -5,16 +5,12 @@
 int main(int argc, char **argv)
 {
 	if (argc != 4)
-	{
 		std::cout << "Please give 4 argument!!" << std::endl;
-		return 0;
-	}
     std::string filename = argv[1];
     std::string oldWord = argv[2];
     std::string newWord = argv[3];
 
     std::ifstream inputFile(filename);
-    std::ofstream outputFile(filename + ".replace");
     std::string fileContents;
 
     if (inputFile.is_open())
@@ -23,13 +19,14 @@ int main(int argc, char **argv)
         while (std::getline(inputFile, line))
             fileContents += line + '\n';
         inputFile.close();
+
         size_t pos = 0;
         while ((pos = fileContents.find(oldWord, pos)) != std::string::npos)
 		{
-            fileContents.erase(pos, oldWord.length());
-			fileContents.insert(pos, newWord);
+            fileContents.replace(pos, oldWord.length(), newWord);
             pos += newWord.length();
         }
+        std::ofstream outputFile(filename);
         if (outputFile.is_open())
 		{
             outputFile << fileContents;

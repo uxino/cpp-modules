@@ -25,18 +25,27 @@ void Harl::error(void)
 
 void Harl::complain(std::string level)
 {
-	int i;
-
+    int j;
 	fpoint fp[4] = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
 	std::string type[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 
-	i = 0;
-	while (i < 4)
-	{
-		if (type[i] == level)
-			break;
-		i++;
-	}
-	if (i < 4)
-		(this->*fp[i])();
+    for (j = 0; j < 4 ; ++j) {
+        if (type[j] == level)
+            break;
+    }
+
+    switch (j)
+    {
+        case 0:
+            (this->*fp[0])();
+        case 1:
+            (this->*fp[1])();
+        case 2:
+            (this->*fp[2])();
+        case 3:
+            (this->*fp[3])();
+            break;
+        default:
+            std::cout << "Invalid arguman!!";
+    }
 }
