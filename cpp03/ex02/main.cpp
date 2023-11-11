@@ -1,7 +1,6 @@
 #include "FragTrap.hpp"
 
-int main()
-{
+int main() {
     FragTrap a("elma");
     FragTrap b("armut");
     FragTrap c("araba");
@@ -9,6 +8,4 @@ int main()
     c = a;
     a.attack("armut");
     b.takeDamage(50);
-    b.beRepaired(5);
-
 }

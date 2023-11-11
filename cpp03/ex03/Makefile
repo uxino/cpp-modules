@@ -1,0 +1,16 @@
+NAME = fragTrap
+SRCS = ClapTrap.cpp main.cpp ScavTrap.cpp FragTrap.cpp DiamondTrap.cpp
+CC = c++
+FLAGS = -Wall -Wextra -Werror -std=c++98
+
+all: $(NAME)
+
+$(NAME): $(SRCS)
+	$(CC) $(FLAGS) $(SRCS) -o $(NAME)
+
+clean:
+	rm -f $(NAME)
+
+fclean: clean
+
+re: fclean all
