@@ -2,7 +2,7 @@
 
 ClapTrap::ClapTrap()
 {
-    std::cout << "Default constructor called" << std::endl;
+    std::cout << "Clap Trap Default constructor called" << std::endl;
     this->name = "Default name";
     this->hitPoints = 10;
     this->attackDamage = 0;
@@ -10,7 +10,7 @@ ClapTrap::ClapTrap()
 }
 ClapTrap::ClapTrap(std::string name)
 {
-    std::cout << "Name constructor called" << std::endl;
+    std::cout << "Clap Trap Name constructor called" << std::endl;
     this->name = name;
     this->hitPoints = 10;
     this->attackDamage = 0;
@@ -70,5 +70,5 @@ void ClapTrap::beRepaired(unsigned int amount)
 }
 ClapTrap::~ClapTrap()
 {
-    std::cout << "Destructor called" << std::endl;
+    std::cout << " Clap Trap Destructor called" << std::endl;
 }

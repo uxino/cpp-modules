@@ -1,5 +1,5 @@
 NAME = animal
-SRCS = Animal.cpp main.cpp Cat.cpp Dog.cpp WrongAnimal.cpp WrongCat.cpp
+SRCS = Animal.cpp main.cpp Cat.cpp Dog.cpp Brain.cpp WrongAnimal.cpp WrongCat.cpp
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++11
 
