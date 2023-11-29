@@ -12,7 +12,7 @@ Dog& Dog::operator =(const Dog &cpy)
     if (this == &cpy)
         return (*this);
     this->type = cpy.type;
-    this->brain = new Brain(cpy.brain);
+    this->brain = new Brain(*(cpy.brain));
     return(*this);
 }
 Dog::Dog(const Dog &cpy) : Animal()

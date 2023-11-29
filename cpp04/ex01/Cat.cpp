@@ -12,7 +12,7 @@ Cat& Cat::operator =(const Cat &cpy)
     if (this == &cpy)
         return (*this);
     this->type = cpy.type;
-    this->brain = new Brain(cpy.brain);
+    this->brain = new Brain(*(cpy.brain));
     return(*this);
 }
 Cat::Cat(const Cat &cpy) : Animal()
