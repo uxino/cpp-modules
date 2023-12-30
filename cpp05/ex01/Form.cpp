@@ -39,6 +39,11 @@ const std::string Form::getName() const
 {
 	return (this->name);
 }
+Form::Form(const Form &cpy): name(this->getName()), sign(this->getSign()), req_signGrade(this->req_signGrade), req_execGrade(this->req_execGrade)
+{
+	*this = cpy;
+	std::cout << "Form copy contructor called." << std::endl;
+}
 
 int	Form::getGrade() const
 {
@@ -52,4 +57,5 @@ std::ostream &operator << (std::ostream &output, const Form &b)
 
 Form::~Form()
 {
+	std::cout << "Form destructor called." << std::endl;
 }
