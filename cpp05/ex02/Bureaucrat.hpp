@@ -1,8 +1,8 @@
 #pragma once
 #include <iostream>
-#include "Form.hpp"
+#include "AForm.hpp"
 
-class Form;
+class AForm;
 
 class Bureaucrat
 {
@@ -14,11 +14,12 @@ class Bureaucrat
 		const std::string	getName() const;
 		int					getGrade() const;
 		~Bureaucrat();
-		void signForm(Form &f);
+		void signForm(AForm &f);
 		Bureaucrat(const Bureaucrat &cpy_fixed);
 		Bureaucrat& operator = (Bureaucrat const &cpy);
 		void increment();
 		void decrement();
+        void executeForm(AForm const & form);
 		class GradeTooLowException : public std::exception{
 			virtual const char* what()const throw();
 		};

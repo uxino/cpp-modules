@@ -17,6 +17,12 @@ bool Form::getSign()
 {
 	return (this->sign);
 }
+Form& Form::operator = (Form const &cpy)
+{
+    this->sign = cpy.sign;
+    std::cout << "Form copy constructor called." << std::endl;
+    return (*this);
+}
 
 Form::Form(const std::string name, int to_sign, int execute) : name(name), req_signGrade(to_sign), req_execGrade(execute)
 {
@@ -39,7 +45,7 @@ const std::string Form::getName() const
 {
 	return (this->name);
 }
-Form::Form(const Form &cpy): name(this->getName()), sign(this->getSign()), req_signGrade(this->req_signGrade), req_execGrade(this->req_execGrade)
+Form::Form(const Form &cpy): name(cpy.getName()), sign(cpy.sign), req_signGrade(cpy.req_signGrade), req_execGrade(cpy.req_execGrade)
 {
 	*this = cpy;
 	std::cout << "Form copy contructor called." << std::endl;
