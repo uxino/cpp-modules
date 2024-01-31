@@ -1,7 +1,8 @@
 #pragma once
 
-template <typename T>
+#include <iostream>
 
+template <typename T>
 class Array
 {
     private:
@@ -10,9 +11,4 @@ class Array
     public:
         Array();
         Array(unsigned int _size);
-        size(T element);
-
 };
-
-template <typename T>
-
