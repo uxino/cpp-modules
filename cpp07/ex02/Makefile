@@ -1,6 +1,6 @@
 NAME	= array
 
-SOURCES	= main.cpp Array.cpp 
+SOURCES	= main.cpp 
 
 OBJECTS = $(SOURCES:.cpp=.o)
 
