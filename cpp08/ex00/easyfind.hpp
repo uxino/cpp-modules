@@ -21,7 +21,7 @@ typename T::iterator easyfind(T &container,int value)
     {
         if (*item == value)
             return (item);
-        ++item;
+        item++;
     }
     throw NotFound();
 }
