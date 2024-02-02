@@ -17,7 +17,7 @@ class Span
         int longestSpan();
         Span(const Span &copy);
         Span& operator=(const Span &copy);
-        const std::vector<int> getArray();
+        const std::vector<int> getArray() const;
         ~Span();
         class FullException : public std::exception{
             public:

@@ -26,19 +26,30 @@ void Span::addNumber(int number)
 
 int Span::shortestSpan()
 {
-    std::vector<int>::iterator
+    int min = longestSpan();
+    std::vector<int>::iterator j;
+
     if (this->vec.size() <= 1)
         throw VectorIsEmptyException();
 
-    return (std::min(this->vec));
+    for (std::vector<int>::iterator i = this->vec.begin(); i < this->vec.end(); ++i)
+    {
+         j = i;
+        while(++j < this->vec.end())
+        {
+            if (min > abs(*i - *j))
+                min = abs(*i - *j);
+        }
+    }
+    return (min);
 }
 
-const char *FullException::what() const throw()
+const char *Span::FullException::what() const throw()
 {
     return ("Capacity Full!!");
 }
 
-const char *VectorIsEmptyException::what() const throw()
+const char* Span::VectorIsEmptyException::what() const throw()
 {
     return ("Vector is empty!!");
 }
@@ -50,9 +61,9 @@ int Span::longestSpan()
     if (this->vec.size() == 1 || this->vec.size() == 0)
         throw VectorIsEmptyException();
     return (*maxElements - *minElements);
-}
+};
 
-const std::vector<int> Span::getArray()
+const std::vector<int> Span::getArray() const
 {
     return (this->vec);
 }
