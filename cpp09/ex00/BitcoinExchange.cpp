@@ -3,10 +3,7 @@
 BitcoinExchange::BitcoinExchange(){}
 
 
-BitcoinExchange::~BitcoinExchange()
-{
-
-}
+BitcoinExchange::~BitcoinExchange(){}
 
 void BitcoinExchange::split(std::map<std::string, float> &arg, std::string &str)
 {
@@ -18,24 +15,26 @@ void BitcoinExchange::split(std::map<std::string, float> &arg, std::string &str)
     it = arg.begin();
     for (int i = 0; i < str.length(); ++i)
         if (str[i] == ',')
-            start = i;
+            split_node = i;
     it->first = str.substr(0,split_node);
-    it->second = strtof(str.substr(split_node, str.length()), NULL);
+    it->second = std::wcstof(str.substr(split_node, str.length()));
     std::cout << "it->first: " << it->first << std::endl;
 }
 
 void BitcoinExchange::data_read(char *arg)
 {
-    std::ifstream   file;
-    std::string     line;
-    std::map<std::string, float>::iterator it;
+    std::ifstream file(arg);
+    std::string line;
 
-    it = this->first_read.begin();
-    file.open(arg);
-    std::getline(file, line);
-    while (line)
+    if (!file.is_open())
     {
-        split(this->first_read, line);
-        std::getline(file, line);
+        std::cerr << "Dosya açma hatası: " << arg << std::endl;
+        return;
     }
+
+    while (std::getline(file, line)) {
+        split(this->first_read, line);
+    }
+
+    file.close();
 }
