@@ -4,7 +4,7 @@
 #include <fstream>
 #include <map>
 #include <string>
-
+#include <sstream>
 class BitcoinExchange
 {
     private:
@@ -15,5 +15,4 @@ class BitcoinExchange
         BitcoinExchange(const BitcoinExchange &cpy);
         ~BitcoinExchange();
         void data_read(char *arg);
-        void split(std::map<std::string, float> &arg, std::string &str);
 };

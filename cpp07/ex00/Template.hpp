@@ -1,7 +1,6 @@
 #pragma once
 
 template <typename T>
-
 T max(T x, T y)
 {
     if (x > y)
@@ -11,8 +10,8 @@ T max(T x, T y)
     else
         return (y);
 }
-template <typename T>
 
+template <typename T>
 T min(T x, T y)
 {
     if (x > y)
@@ -22,8 +21,8 @@ T min(T x, T y)
     else
         return (y);
 }
-template <typename T>
 
+template <typename T>
 void swap(T &x, T &y)
 {
     T temp;

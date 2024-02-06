@@ -5,36 +5,33 @@ BitcoinExchange::BitcoinExchange(){}
 
 BitcoinExchange::~BitcoinExchange(){}
 
-void BitcoinExchange::split(std::map<std::string, float> &arg, std::string &str)
-{
-    std::string first;
-    std::string second;
-    int split_node = 0;
-    std::map<std::string, float>::iterator it;
-
-    it = arg.begin();
-    for (int i = 0; i < str.length(); ++i)
-        if (str[i] == ',')
-            split_node = i;
-    it->first = str.substr(0,split_node);
-    it->second = std::wcstof(str.substr(split_node, str.length()));
-    std::cout << "it->first: " << it->first << std::endl;
-}
 
 void BitcoinExchange::data_read(char *arg)
 {
     std::ifstream file(arg);
     std::string line;
-
+	int	a = 0;
     if (!file.is_open())
     {
-        std::cerr << "Dosya açma hatası: " << arg << std::endl;
+        std::cerr << "File opening error: " << arg << std::endl;
         return;
     }
 
-    while (std::getline(file, line)) {
-        split(this->first_read, line);
+    while (std::getline(file, line))
+	{
+		std::istringstream iss(line);
+		std::string date;
+		std::string value;
+		std::getline(iss, date, ',');
+		std::getline(iss, value, ',');
+		if (date == "date")
+			continue;
+		first_read[date] = stof(value);
+		for (std::map<std::string, float>::iterator i = first_read.begin(); i != first_read.end(); i++)
+		{
+			std::cout << *i << std::endl;
+		}
+		
     }
-
     file.close();
 }
