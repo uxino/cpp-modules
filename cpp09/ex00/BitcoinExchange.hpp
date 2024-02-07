@@ -15,4 +15,8 @@ class BitcoinExchange
         BitcoinExchange(const BitcoinExchange &cpy);
         ~BitcoinExchange();
         void data_read(char *arg);
+		class OutOfRange : public std::exception
+		{
+			const char *what() const throw();
+		}
 };

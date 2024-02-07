@@ -5,18 +5,20 @@ BitcoinExchange::BitcoinExchange(){}
 
 BitcoinExchange::~BitcoinExchange(){}
 
+const char *BitcoinExchange:: OutOfRange :: what() const throw()
+{
+	return ("İt is must be between 0 and 1000!!");
+}
 
 void BitcoinExchange::data_read(char *arg)
 {
     std::ifstream file(arg);
     std::string line;
-	int	a = 0;
     if (!file.is_open())
     {
         std::cerr << "File opening error: " << arg << std::endl;
         return;
     }
-
     while (std::getline(file, line))
 	{
 		std::istringstream iss(line);
@@ -27,11 +29,11 @@ void BitcoinExchange::data_read(char *arg)
 		if (date == "date")
 			continue;
 		first_read[date] = stof(value);
-		for (std::map<std::string, float>::iterator i = first_read.begin(); i != first_read.end(); i++)
-		{
-			std::cout << *i << std::endl;
-		}
-		
+
     }
+	// for (std::map<std::string, float>::iterator i = first_read.begin(); i != first_read.end(); i++)
+	// {
+	// 	std::cout << "String: " << i->first << "Value: " << i->second << std::endl;
+	// }
     file.close();
 }
