@@ -13,15 +13,10 @@ public:
     }
 };
 template<typename T>
-typename T::iterator easyfind(T &container,int value)
+typename T::iterator easyfind(T &t, int n)
 {
-    typename T::iterator item = container.begin();
-
-    while (item != container.end())
-    {
-        if (*item == value)
-            return (item);
-        item++;
-    }
-    throw NotFound();
+	typename T::iterator it = std::find(t.begin(), t.end(), n);
+	if (it == t.end())
+		throw NotFound();
+	return it;
 }

@@ -18,6 +18,7 @@ class Span
         Span(const Span &copy);
         Span& operator=(const Span &copy);
         const std::vector<int> getArray() const;
+		void addTestNumbers(std::vector<int>::iterator begin, std::vector<int>::iterator last);
         ~Span();
         class FullException : public std::exception{
             public:
@@ -30,4 +31,4 @@ class Span
         };
 };
 
-std::ostream& operator << (std::ostream &of, Span &r);
+std::ostream& operator << (std::ostream &of, const Span &r);

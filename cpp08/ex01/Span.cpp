@@ -63,6 +63,17 @@ int Span::longestSpan()
     return (*maxElements - *minElements);
 };
 
+void Span::addTestNumbers(std::vector<int>::iterator begin, std::vector<int>::iterator last)
+{
+	while (begin != last)
+	{
+		if (this->vec.size() > this->N)
+			throw FullException();
+		this->vec.push_back(*begin);
+		begin++;
+	}
+}
+
 const std::vector<int> Span::getArray() const
 {
     return (this->vec);
@@ -82,7 +93,7 @@ Span& Span::operator=(const Span &copy)
     return (*this);
 }
 
-std::ostream& operator<<(std::ostream& output, const Span& span)
+std::ostream& operator<<(std::ostream& output,const Span& span)
 {
     const std::vector<int> numbers = span.getArray();
     for (std::vector<int>::const_iterator i = numbers.begin(); i != numbers.end(); ++i)
