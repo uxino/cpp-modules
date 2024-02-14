@@ -5,12 +5,61 @@ BitcoinExchange::BitcoinExchange(){}
 
 BitcoinExchange::~BitcoinExchange(){}
 
-const char *BitcoinExchange:: OutOfRange :: what() const throw()
+void firstLineError()
 {
-	return ("İt is must be between 0 and 1000!!");
+	std::cout << "ValueError: The first line of the file should be 'data | value'." << std::endl;
+	exit (1);
+};
+
+int OutOfRange()
+{
+	std::cout << "Error: not a positive number." << std::endl;
+	return (1);
 }
 
-void BitcoinExchange::data_read(char *arg)
+int NotPositive()
+{
+	std::cout << "Error: not a positive number." << std::endl;
+	return (1);
+}
+
+int BadInput(std::string &date)
+{
+	std::cout << "Error: bad input => " << date << std::endl;
+	return (1);
+}
+
+int TooLarge()
+{
+	std::cout << "Error: too large a number." << std::endl;
+	return (1);
+}
+
+void BitcoinExchange::exchange(const char *arg)
+{
+    std::ifstream file(arg);
+    std::string line;
+    if (!file.is_open())
+    {
+        std::cerr << "File opening error: " << arg << std::endl;
+        return;
+    }
+    while (std::getline(file, line))
+	{
+		std::istringstream iss(line);
+		std::string date;
+		std::string value;
+		std::getline(iss, date, '|');
+		std::getline(iss, value, '|');
+		if (date.find("date") != std::string::npos)
+			continue;
+		std::cout << date  << value << std::endl;
+		argRead[date] = stof(value);
+    }
+    file.close();
+}
+
+void BitcoinExchange::data_read(const char *arg)
 {
     std::ifstream file(arg);
     std::string line;
@@ -26,14 +75,9 @@ void BitcoinExchange::data_read(char *arg)
 		std::string value;
 		std::getline(iss, date, ',');
 		std::getline(iss, value, ',');
-		if (date == "date")
+		if (date.find("date") != std::string::npos)
 			continue;
-		first_read[date] = stof(value);
-
+		csvRead[date] = stof(value);
     }
-	// for (std::map<std::string, float>::iterator i = first_read.begin(); i != first_read.end(); i++)
-	// {
-	// 	std::cout << "String: " << i->first << "Value: " << i->second << std::endl;
-	// }
     file.close();
 }

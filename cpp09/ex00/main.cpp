@@ -9,5 +9,6 @@ int main(int argc, char *argv[])
         std::cout << "Error: could not open file." << std::endl;
         return (0);
     }
-    a.data_read(argv[1]);
+    a.data_read("data.csv");
+	a.exchange(argv[1]);
 }
