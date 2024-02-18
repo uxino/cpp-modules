@@ -20,9 +20,3 @@ class BitcoinExchange
 		void parser(std::string first, double second);
 		void double_it_and_give_it_the_next_person(std::string date,double value);
 };
-
-// int OutOfRange();
-// int NotPositive();
-// int BadInput(std::string &date);
-// int TooLarge();
-// void firstLineError();
