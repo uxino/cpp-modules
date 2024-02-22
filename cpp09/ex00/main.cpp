@@ -3,6 +3,7 @@
 int main(int argc, char *argv[])
 {
     BitcoinExchange a;
+	int min_year;
 
     if (argc != 2)
     {
@@ -10,5 +11,6 @@ int main(int argc, char *argv[])
         return (0);
     }
     a.data_read();
-	a.exchange(argv[1]);
+	min_year = a.min_year();
+	a.exchange(argv[1], min_year);
 }

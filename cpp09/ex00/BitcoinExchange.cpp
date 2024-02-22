@@ -31,19 +31,19 @@ void BitcoinExchange::double_it_and_give_it_the_next_person(std::string date,dou
     }
 }
 
-void BitcoinExchange::parser(std::string first, double second)
+void BitcoinExchange::parser(std::string first, double second, int min_year)
 {
     int year;
     int month;
     int day;
     double value;
-    // year = stoi(first.substr(0,4));
+
     year = stoi(first.substr(0,4));
     month = stoi(first.substr(5,2));
     day = stoi(first.substr(8,10));
     value = second;
 
-    if(((year > 2022) || (year < 2009)) || ((month > 12) || (month < 1)) || ((day > 31) || (day < 1)))
+    if(((year > 2022) || (year < min_year)) || ((month > 12) || (month < 1)) || ((day > 31) || (day < 1)))
     {
         std::cout << "bad input => " << first.substr(0,10) << std::endl;
     }
@@ -57,14 +57,23 @@ void BitcoinExchange::parser(std::string first, double second)
     }
     else
         double_it_and_give_it_the_next_person(first.substr(0,10),value);
-}   
+}
 
-void BitcoinExchange::exchange(const char *arg)
+int BitcoinExchange::min_year()
+{
+	int min_date = 2024;
+	std::map<std::string, float>::iterator it;
+
+	for (it = this->csvRead.begin(); it != this->csvRead.end(); it++)
+		if (min_date > std::stoi(it->first.substr(0,4)))
+			min_date = std::stoi(it->first.substr(0,4));
+	return (min_date);
+}
+
+void BitcoinExchange::exchange(const char * arg, int min_year)
 {
 	std::ifstream file(arg);
     std::string databaseFileLine;
-   
-    
     std::getline(file, databaseFileLine);
 
     std::map<std::string, double> dataMap;
@@ -73,11 +82,12 @@ void BitcoinExchange::exchange(const char *arg)
     {
         if(databaseFileLine.size() > 11) 
         {
-            double value = std::stof(databaseFileLine.substr(13));
-            parser(databaseFileLine.substr(0, 10), value);
+			double value = std::stof(databaseFileLine.substr(13));
+            parser(databaseFileLine.substr(0, 10), value, min_year);
         } 
         else 
             std::cout << "Error: bad input => " << databaseFileLine.substr(0, 10) << std::endl;
+			
         
     }
     file.close();
@@ -85,18 +95,18 @@ void BitcoinExchange::exchange(const char *arg)
 
 void BitcoinExchange::data_read()
 {
-    std::ifstream file("data.csv");
     std::string databaseFileLine;
+    std::map<std::string, double> dataMap;
    
     
+    std::ifstream file("data.csv");
     std::getline(file, databaseFileLine);
 
-    std::map<std::string, double> dataMap;
 
     while (std::getline(file, databaseFileLine))
     {
-        float value = std::stof(databaseFileLine.substr(11));
-        
+        float value = std::stof(databaseFileLine.substr(12));
+		// std::cout << "elma: " << databaseFileLine.substr(12) << std::endl;
         this->csvRead.insert(std::make_pair(databaseFileLine.substr(0, 10), value));
     }
     file.close();
