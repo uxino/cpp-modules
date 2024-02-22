@@ -105,8 +105,7 @@ void BitcoinExchange::data_read()
 
     while (std::getline(file, databaseFileLine))
     {
-        float value = std::stof(databaseFileLine.substr(12));
-		// std::cout << "elma: " << databaseFileLine.substr(12) << std::endl;
+        float value = std::stof(databaseFileLine.substr(11));
         this->csvRead.insert(std::make_pair(databaseFileLine.substr(0, 10), value));
     }
     file.close();
