@@ -82,7 +82,7 @@ void BitcoinExchange::exchange(const char * arg, int min_year)
     {
         if(databaseFileLine.size() > 11) 
         {
-			double value = std::stof(databaseFileLine.substr(13));
+			double value = atof((databaseFileLine.substr(13)).c_str());
             parser(databaseFileLine.substr(0, 10), value, min_year);
         } 
         else 
@@ -105,10 +105,12 @@ void BitcoinExchange::data_read()
 
     while (std::getline(file, databaseFileLine))
     {
-        float value = std::stof(databaseFileLine.substr(11));
+        float value = atof((databaseFileLine.substr(11)).c_str());
         this->csvRead.insert(std::make_pair(databaseFileLine.substr(0, 10), value));
+		//this->csvRead[databaseFileLine.substr(0, 10)] = value;
     }
     file.close();
+
 }
 
 BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange &arg)

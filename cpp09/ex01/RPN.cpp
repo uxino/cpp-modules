@@ -12,8 +12,8 @@ int is_operator(char a)
 
 void operation(std::stack<int> &stack, char op)
 {
-	(void)op;
-	int nbr = 0;
+	int nbr;
+
 	if(op == '+')
 	{
 		nbr = stack.top();
@@ -26,7 +26,7 @@ void operation(std::stack<int> &stack, char op)
 	{
 		nbr = stack.top();
 		stack.pop();
-		nbr = stack.top()- nbr;
+		nbr = stack.top() - nbr;
 		stack.pop();
 		stack.push(nbr);
 	}
@@ -42,13 +42,11 @@ void operation(std::stack<int> &stack, char op)
 	{
 		nbr = stack.top();
 		stack.pop();
-		nbr = nbr / stack.top();
+		nbr = stack.top() / nbr;
 		stack.pop();
 		stack.push(nbr);
 	}
-	std::cout << ":::" << stack.top() << std::endl;
 }
-
 
 void start(std::stack<int> &stack, std::string input)
 {
@@ -76,7 +74,7 @@ void start(std::stack<int> &stack, std::string input)
 			exit(1);
 		}
 	}
-	std::cout << "CEVAP: " << stack.top() << std::endl;
+	std::cout << "Result: " << stack.top() << std::endl;
 }
 
 
