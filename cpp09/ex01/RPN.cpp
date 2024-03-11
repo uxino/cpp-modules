@@ -10,10 +10,26 @@ int is_operator(char a)
 	return (0);
 }
 
+int is_valid(const char *s, int i)
+{
+	while(s[i])
+	{
+		if (is_operator(s[i]))
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 void operation(std::stack<int> &stack, char op)
 {
 	int nbr;
 
+	if (stack.size() < 2)
+	{
+		std::cout << "Error!" << std::endl;
+		exit(1);
+	}
 	if(op == '+')
 	{
 		nbr = stack.top();
@@ -67,6 +83,11 @@ void start(std::stack<int> &stack, std::string input)
 		{
 			nbr = input[i] - '0';
 			stack.push(nbr);
+			if (stack.size() == 2 && !is_valid(input.c_str(), i))
+			{
+				std::cout << "Error" << std::endl;
+				exit(1);
+			}
 		}
 		else
 		{

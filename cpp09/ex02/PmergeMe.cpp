@@ -125,12 +125,19 @@ void PmergeMe::sort2(std::deque<int> & bar)
 void PmergeMe::print_values()
 {
 	std::vector<int>::iterator it;
+	int i = 0;
 
 	it = this->_vector.begin();
 	while (it != this->_vector.end())
 	{
+		if (i == 5)
+		{
+			std::cout << "[...]"<<std::endl;	
+			return;
+		}
 		std::cout << *it << " "; 
 		it++;
+		i++;
 	}
 	std::cout << std::endl;
 }
@@ -147,7 +154,7 @@ void PmergeMe::process()
     sort(this->_vector);
     v = clock() - v;
 
-    std::cout << "After: ";
+    std::cout << "After:   ";
     print_values();
 
     d = clock();

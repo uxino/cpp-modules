@@ -51,7 +51,7 @@ void BitcoinExchange::parser(std::string first, double second, int min_year)
     {
         std::cout << "Error: not a positive number." << std::endl;
     }
-    else if(value > 2147483647)
+    else if(value > 1000)
     {
         std::cout << "Error: too large a number." << std::endl;
     }
@@ -106,8 +106,7 @@ void BitcoinExchange::data_read()
     while (std::getline(file, databaseFileLine))
     {
         float value = atof((databaseFileLine.substr(11)).c_str());
-        this->csvRead.insert(std::make_pair(databaseFileLine.substr(0, 10), value));
-		//this->csvRead[databaseFileLine.substr(0, 10)] = value;
+		this->csvRead[databaseFileLine.substr(0, 10)] = value;
     }
     file.close();
 
